@@ -1,4 +1,4 @@
-package com.mazzillio.mazzillioweb01.services.Popular;
+package com.mazzillio.mazzillioweb01.services.Carga;
 
 import javax.ejb.Local;
 

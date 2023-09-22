@@ -1,9 +1,7 @@
-package com.mazzillio.mazzillioweb01.services.Popular;
+package com.mazzillio.mazzillioweb01.services.Carga;
 
-import com.mazzillio.mazzillioweb01.entities.Endereco;
-import com.mazzillio.mazzillioweb01.entities.Pessoa;
-import com.mazzillio.mazzillioweb01.entities.Telefone;
-import com.mazzillio.mazzillioweb01.entities.TipoLogadouro;
+import com.mazzillio.mazzillioweb01.entities.*;
+import com.mazzillio.mazzillioweb01.services.Atuacao.AtuacaoServiceLocal;
 import com.mazzillio.mazzillioweb01.services.Pessoa.PessoaServiceLocal;
 
 import javax.annotation.PostConstruct;
@@ -17,6 +15,9 @@ import java.time.LocalDate;
 public class CargaDados implements CargaDadosLocal{
     @Inject
     private PessoaServiceLocal pessoaService;
+
+    @Inject
+    private AtuacaoServiceLocal atuacaoService;
     @Override
     @PostConstruct
     public void popularBanco(){
@@ -38,5 +39,20 @@ public class CargaDados implements CargaDadosLocal{
         endereco.setLogadouro("Rua B");
         pessoa.setEndereco(endereco);
         pessoaService.salvar(pessoa);
+
+        Grupo grupo = new Grupo();
+
+        grupo.setAtivo(true);
+        grupo.setNome("BD");
+        grupo.setLider(pessoa);
+
+        Atuacao atuacao = new Atuacao();
+        atuacao.setInicio(LocalDate.of(2023,1,1));
+        atuacao.setTermino(LocalDate.of(2023,6,1));
+        atuacao.setPessoa(pessoa);
+        atuacao.setGrupo(grupo);
+
+        atuacaoService.salvar(atuacao);
+
     }
 }

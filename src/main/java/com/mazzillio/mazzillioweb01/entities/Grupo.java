@@ -15,6 +15,14 @@ public class Grupo implements Serializable {
     @JoinColumn(name = "pessoa_id")
     private Pessoa lider;
 
+    public Pessoa getLider() {
+        return lider;
+    }
+
+    public void setLider(Pessoa lider) {
+        this.lider = lider;
+    }
+
     public Long getId() {
         return id;
     }
