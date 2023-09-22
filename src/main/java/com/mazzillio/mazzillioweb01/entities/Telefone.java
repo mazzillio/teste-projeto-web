@@ -12,7 +12,7 @@ public class Telefone implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private Byte ddd;
-    private Number numero;
+    private Integer numero;
 
     public long getId() {
         return id;
@@ -30,11 +30,11 @@ public class Telefone implements Serializable {
         this.ddd = ddd;
     }
 
-    public Number getNumero() {
+    public Integer getNumero() {
         return numero;
     }
 
-    public void setNumero(Number numero) {
+    public void setNumero(Integer numero) {
         this.numero = numero;
     }
 }

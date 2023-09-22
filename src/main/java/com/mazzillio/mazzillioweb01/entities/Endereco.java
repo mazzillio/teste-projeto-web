@@ -10,7 +10,7 @@ public class Endereco implements Serializable {
     private TipoLogadouro tipoLogadouro;
     @Column(length = 150)
     private String logadouro;
-    private Number numero;
+    private Integer numero;
     @Column(length = 25)
     private String bairro;
 
@@ -38,11 +38,11 @@ public class Endereco implements Serializable {
         this.logadouro = logadouro;
     }
 
-    public Number getNumero() {
+    public Integer getNumero() {
         return numero;
     }
 
-    public void setNumero(Number numero) {
+    public void setNumero(Integer numero) {
         this.numero = numero;
     }
 
