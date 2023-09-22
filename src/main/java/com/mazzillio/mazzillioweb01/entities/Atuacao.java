@@ -1,13 +1,22 @@
 package com.mazzillio.mazzillioweb01.entities;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Atuacao {
+@Entity
+public class Atuacao implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private LocalDate inicio;
     private LocalDate termino;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "grupo_id")
     private Grupo grupo;
 
     public long getId() {

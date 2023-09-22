@@ -1,17 +1,54 @@
 package com.mazzillio.mazzillioweb01.entities;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-
-public class Pessoa {
+@Entity
+public class Pessoa implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(length = 65)
     private String name;
+    @Column(length = 250)
     private String email;
     private LocalDate nascimento;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco_id")
     private Endereco endereco;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pessoa_id")
     private List<Telefone> telefones;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "lider")
+    private List<Grupo>grupos;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pessoa")
+    private List<Atuacao> atuacoes;
+
+    public Pessoa(){
+        telefones = new ArrayList<>();
+        grupos = new ArrayList<>();
+        atuacoes = new ArrayList<>();
+    }
+
+    public List<Grupo> getGrupos() {
+        return grupos;
+    }
+
+    public void setGrupos(List<Grupo> grupos) {
+        this.grupos = grupos;
+    }
+
+    public List<Atuacao> getAtuacoes() {
+        return atuacoes;
+    }
+
+    public void setAtuacoes(List<Atuacao> atuacoes) {
+        this.atuacoes = atuacoes;
+    }
     public List<Telefone> getTelefones() {
         return telefones;
     }

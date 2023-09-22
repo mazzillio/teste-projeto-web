@@ -1,10 +1,17 @@
 package com.mazzillio.mazzillioweb01.entities;
 
-public class Endereco {
+import javax.persistence.*;
+import java.io.Serializable;
+@Entity
+public class Endereco implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private TipoLogadouro tipoLogadouro;
+    @Column(length = 150)
     private String logadouro;
     private Number numero;
+    @Column(length = 25)
     private String bairro;
 
     public long getId() {
